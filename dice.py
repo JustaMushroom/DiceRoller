@@ -98,7 +98,7 @@ def rolldice(density, count, times):
     confirmroll(density, count, times)
     return
   elif choice.upper() == "METRICS" or choice.upper() == "M":
-    showmetrics(rolls)
+    showmetrics(rolls) # TODO: Make the return after this function go back to the original results display (refactoring most of this code will likely be required)
     return
   else:
     return
