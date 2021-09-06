@@ -167,7 +167,7 @@ def newroll():
         input("back>")
         return
       elif int(ttr) is None:
-        print("Please enter a Number!")
+        print("Please enter a number!")
         input("back>")
         return
       else:
