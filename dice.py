@@ -87,14 +87,18 @@ def rolldice(density, count, times):
   clear()
   print(header.table)
   print(menu.table)
+  print("To view advanced metrics, type \"metrics\"")
   print("To save the information of the current dice to a file, type \"save\" now")
   print("To roll again with the same settings, type \"reroll\"")
-  choice = input("save/reroll/back>")
+  choice = input("metrics/save/reroll/back>")
   if choice.upper() == "SAVE" or choice.upper() == "S" or choice.upper() == "SAVEROLL":
     saveroll(density, count, times)
     return
   elif choice.upper() == "REROLL" or choice.upper() == "R":
     confirmroll(density, count, times)
+    return
+  elif choice.upper() == "METRICS" or choice.upper() == "M":
+    showmetrics(rolls)
     return
   else:
     return
