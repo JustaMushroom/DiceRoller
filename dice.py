@@ -65,17 +65,18 @@ def rolldice(density, count, times):
       s += 1
     rolls.append(roll)
     i += 1
-  print(rolls)
+  #print(rolls)
   q = 0
   menu_data = [
-    ['Title', 'Value', 'Total']
+    ['Title', 'Value', 'Total', 'Average']
   ]
 
   while q < len(rolls):
     croll = rolls[q]
     crollsplit = croll.split(":")
+    averageRoll = sum(croll) / len(croll)
     totalRoll = functools.reduce(lambda a, b: a+b, [int(number) for number in crollsplit])
-    menu_data.append(['Roll {}'.format(str(int(q) + 1)), croll, totalRoll])
+    menu_data.append(['Roll {}'.format(str(int(q) + 1)), croll, totalRoll, averageRoll])
     q += 1
 
   header = AsciiTable(header_data)
