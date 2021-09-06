@@ -266,6 +266,7 @@ def showmetrics(rolls):
   
   titletable = AsciiTable(title_data)
   bodytable = AsciiTable(body_data)
+  clear()
   print(titletable.table)
   print(bodytable.table)
   input("back>")
