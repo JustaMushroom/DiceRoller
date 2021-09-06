@@ -231,7 +231,7 @@ def showmetrics(rolls):
     introll = []
     for number in croll:
       introll.append(int(number))
-    rolltotals.append(functools.reduce(lambda a, b: a+b, [number for number in introll]))
+    rolltotals.append(sum(introll))
     rollaverages.append(sum(introll) / len(introll))
   
   besttotal = {"idx": -1, "val": 0}
