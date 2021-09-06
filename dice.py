@@ -236,7 +236,7 @@ def showmetrics(rolls):
 
   while currentIndex < len(rolltotals):
     total = rolltotals[currentIndex]
-    if total < besttotal.val:
+    if total < besttotal["val"]:
       besttotal = {"idx": currentIndex, "val": total}
     currentIndex += 1
   
@@ -244,7 +244,7 @@ def showmetrics(rolls):
 
   while currentIndex < len(rollaverages):
     average = rollaverages[currentIndex]
-    if average < bestaverage.val:
+    if average < bestaverage["val"]:
       bestaverage = {"idx": currentIndex, "val": average}
     currentIndex += 1
   
@@ -255,7 +255,7 @@ def showmetrics(rolls):
   while cI < len(definedmetrics):
     metric = definedmetrics[cI]
     metricresult = definedresults[cI]
-    toadd = [metric, "Roll {}".format(metricresult.idx + 1), str(metricresult.val)]
+    toadd = [metric, "Roll {}".format(metricresult["idx"] + 1), str(metricresult["val"])]
     body_data.append(toadd)
     cI += 1
   
