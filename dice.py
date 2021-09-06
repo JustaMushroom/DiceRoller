@@ -26,11 +26,11 @@ def saveroll(density, count, times):
   clear()
   print(header.table)
   print(body1.table)
-  print("Saving Dice Information")
-  print("Please enter a Filename (Don't Include Extensions)")
+  print("Saving Dice information")
+  print("Please enter a filename (Don't Include Extensions)")
   filename = input("save>")
   if filename == "":
-    print("Please enter a Filename!")
+    print("Please enter a filename!")
     input("retry>")
     saveroll(density, count, times)
     return
@@ -49,7 +49,7 @@ def saveroll(density, count, times):
   return
 
 def rolldice(density, count, times):
-  print("Rolling {} {}-Sided Dice/s {} times".format(count, density, times))
+  print("Rolling {} {}-sided dice/s {} times".format(count, density, times))
   ccount = int(times) - 1
   sleep(3)
   header_data = [
@@ -98,7 +98,7 @@ def rolldice(density, count, times):
 
 def confirmroll(density, count, times):
   print("Is this data okay? [y/N]")
-  print("{} {}-Sided Dice/s are to be rolled {} times".format(count, density, times))
+  print("{} {}-sided dice/s are to be rolled {} times".format(count, density, times))
   choice = input("confirm>")
   c = choice.upper()
   if c == "Y":
@@ -118,7 +118,7 @@ def newroll():
   header = AsciiTable(header_data)
   body_data = [
     ['Option', 'Value'],
-    ['Number of sides','N/A'],
+    ['Number of Sides','N/A'],
     ['Number of Dice', 'N/A'],
     ['Number of Rolls', 'N/A']
   ]
@@ -150,7 +150,7 @@ def newroll():
       input("back>")
       return
     elif int(nod) is None:
-      print("Please enter a Number!")
+      print("Please enter a number!")
       input("back>")
       return
     else:
