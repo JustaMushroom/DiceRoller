@@ -96,7 +96,7 @@ def rolldice(density, count, times):
 
 
 def confirmroll(density, count, times):
-  print("Is this data okay? [Y/N]")
+  print("Is this data okay? [y/N]")
   print("{} {}-Sided Dice/s are to be rolled {} times".format(count, density, times))
   choice = input("confirm>")
   c = choice.upper()
@@ -105,8 +105,7 @@ def confirmroll(density, count, times):
   elif c == "N":
     return
   else:
-    print("Please Select a valid option!")
-    confirmroll(density, count, times)
+    return
 
 def newroll():
   header_data = [
