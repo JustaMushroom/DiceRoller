@@ -84,7 +84,8 @@ def rolldice(density, count, times):
   print(header.table)
   print(menu.table)
   print("To save the information of the current dice to a file, type \"save\" now")
-  choice = input("back>")
+  print("To roll again with the same settings, type \"reroll\"")
+  choice = input("save/reroll/back>")
   if choice.upper() == "SAVE" or choice.upper() == "S" or choice.upper() == "SAVEROLL":
     saveroll(density, count, times)
     return
@@ -104,7 +105,7 @@ def confirmroll(density, count, times):
     rolldice(density, count, times)
   elif c == "N":
     return
-  elif c.len == 0:
+  elif c.len == 0 or choice.len == 0:
     return
   else:
     print("Invalid Option, exiting...")
