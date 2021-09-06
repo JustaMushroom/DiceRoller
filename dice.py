@@ -237,7 +237,7 @@ def showmetrics(rolls):
   while currentIndex < len(rolltotals):
     total = rolltotals[currentIndex]
     if total < besttotal.val:
-      besttotal = {idx: currentIndex, val: total}
+      besttotal = {"idx": currentIndex, "val": total}
     currentIndex += 1
   
   currentIndex = 0
@@ -245,7 +245,7 @@ def showmetrics(rolls):
   while currentIndex < len(rollaverages):
     average = rollaverages[currentIndex]
     if average < bestaverage.val:
-      bestaverage = {idx: currentIndex, val: average}
+      bestaverage = {"idx": currentIndex, "val": average}
     currentIndex += 1
   
   definedresults.append(besttotal)
