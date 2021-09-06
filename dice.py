@@ -69,7 +69,7 @@ def rolldice(density, count, times):
   showresults(rolls)
   return
 
-def showresults(rolls)
+def showresults(rolls):
   q = 0
   menu_data = [
     ['Title', 'Value', 'Total', 'Average']
