@@ -215,7 +215,7 @@ def showmetrics(rolls):
   body_data = [
     ["Metric", "Best roll", "Value"]
   ]
-  definedmetrics = ["Best Total", "Best Average"]
+  definedmetrics = ["Highest Total", "Highest Average"]
   definedresults = []
   splitrolls = []
   rolltotals = []
