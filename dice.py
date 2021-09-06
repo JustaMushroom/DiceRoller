@@ -182,7 +182,7 @@ def newroll():
         confirmroll(density, dice, times)
 
 def importroll():
-  print("Type the filename of the dice data you would like to import (don't include extension)")
+  print("Type the filename of the dice data you would like to import (don't include any extensions)")
   filename = input("file>") + ".dice"
   print("Opening file!")
   try:
@@ -191,6 +191,8 @@ def importroll():
     print("ERROR: The file specified could not be found!")
     input("back>")
     return
+  except Exception as e:
+    print("An unexpected error has ocurred! Please try again. If you file a bug report please include this text: \"{}\"".format(e))
   if file is None:
     print("Invalid file name!")
     input("back>")
