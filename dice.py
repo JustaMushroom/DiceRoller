@@ -204,6 +204,63 @@ def importroll():
     dicetimes = data[2].strip("\n")
     confirmroll(dicedensity, dicecount, dicetimes)
 
+def showmetrics(rolls):
+  title_data = [
+    ["Advanced Metrics"]
+  ]
+  body_data = [
+    ["Metric", "Best roll", "Value"]
+  ]
+  definedmetrics = ["Best Total", "Best Average"]
+  definedresults = []
+  splitrolls = []
+  rolltotals = []
+  rollaverages = []
+  for roll in rolls:
+    croll = roll.split(":")
+    splitrolls.append(croll)
+    introll = []
+    for number in croll:
+      introll.append(int(number))
+    rolltotals.append(functools.reduce(lambda a, b: a+b, [number for number in introll])
+    rollaverages.append(sum(introll) / len(introll))
+  
+  besttotal = {idx: -1, val: 0}
+  bestaverage = {idx: -1, val: 0}
+  
+  currentIndex = 0
+
+  while currentIndex < len(rolltotals):
+    total = rolltotals[currentIndex]
+    if total < besttotal.val:
+      besttotal = {idx: currentIndex, val: total}
+    currentIndex += 1
+  
+  currentIndex = 0
+
+  while currentIndex < len(rollaverages):
+    average = rollaverages[currentIndex]
+    if average < bestaverage.val:
+      bestaverage = {idx: currentIndex, val: average}
+    currentIndex += 1
+  
+  definedresults.append(besttotal)
+  definedresults.append(bestaverage)
+
+  cI = 0
+  while cI < len(definedmetrics):
+    metric = definedmetrics[cI]
+    metricresult = definedresults[cI]
+    toadd = [metric, "Roll {}".format(metricresult.idx + 1), str(metricresult.val)]
+    body_data.append(toadd)
+    cI += 1
+  
+  titletable = AsciiTable(title_data)
+  bodytable = AsciiTable(body_data)
+  print(titletable.table)
+  print(bodytable.table)
+  input("back>")
+
 menuoptions = {
   "1": newroll,
   "2": importroll,
