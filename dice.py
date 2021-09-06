@@ -26,11 +26,11 @@ def saveroll(density, count, times):
   clear()
   print(header.table)
   print(body1.table)
-  print("Saving Dice Information")
-  print("Please enter a Filename (Don't Include Extensions)")
+  print("Saving Dice information")
+  print("Please enter a filename (Don't Include Extensions)")
   filename = input("save>")
   if filename == "":
-    print("Please enter a Filename!")
+    print("Please enter a filename!")
     input("retry>")
     saveroll(density, count, times)
     return
@@ -49,7 +49,7 @@ def saveroll(density, count, times):
   return
 
 def rolldice(density, count, times):
-  print("Rolling {} {}-Sided Dice/s {} times".format(count, density, times))
+  print("Rolling {} {}-sided dice/s {} times".format(count, density, times))
   ccount = int(times) - 1
   sleep(3)
   header_data = [
@@ -65,17 +65,21 @@ def rolldice(density, count, times):
       s += 1
     rolls.append(roll)
     i += 1
-  print(rolls)
+  #print(rolls)
   q = 0
   menu_data = [
-    ['Title', 'Value', 'Total']
+    ['Title', 'Value', 'Total', 'Average']
   ]
 
   while q < len(rolls):
     croll = rolls[q]
     crollsplit = croll.split(":")
+    crollint = []
+    for number in crollsplit:
+      crollint.append(int(number))
+    averageRoll = sum(crollint) / len(crollint)
     totalRoll = functools.reduce(lambda a, b: a+b, [int(number) for number in crollsplit])
-    menu_data.append(['Roll {}'.format(str(int(q) + 1)), croll, totalRoll])
+    menu_data.append(['Roll {}'.format(str(int(q) + 1)), croll, totalRoll, averageRoll])
     q += 1
 
   header = AsciiTable(header_data)
@@ -98,14 +102,12 @@ def rolldice(density, count, times):
 
 def confirmroll(density, count, times):
   print("Is this data okay? [y/N]")
-  print("{} {}-Sided Dice/s are to be rolled {} times".format(count, density, times))
+  print("{} {}-sided dice/s are to be rolled {} times".format(count, density, times))
   choice = input("confirm>")
   c = choice.upper()
   if c == "Y":
     rolldice(density, count, times)
   elif c == "N":
-    return
-  elif c.len == 0 or choice.len == 0:
     return
   else:
     print("Invalid Option, exiting...")
@@ -118,7 +120,7 @@ def newroll():
   header = AsciiTable(header_data)
   body_data = [
     ['Option', 'Value'],
-    ['Number of sides','N/A'],
+    ['Number of Sides','N/A'],
     ['Number of Dice', 'N/A'],
     ['Number of Rolls', 'N/A']
   ]
@@ -150,7 +152,7 @@ def newroll():
       input("back>")
       return
     elif int(nod) is None:
-      print("Please enter a Number!")
+      print("Please enter a number!")
       input("back>")
       return
     else:
@@ -167,7 +169,7 @@ def newroll():
         input("back>")
         return
       elif int(ttr) is None:
-        print("Please enter a Number!")
+        print("Please enter a number!")
         input("back>")
         return
       else:
@@ -180,10 +182,17 @@ def newroll():
         confirmroll(density, dice, times)
 
 def importroll():
-  print("Type the filename of the dice data you would like to import (don't include extension)")
+  print("Type the filename of the dice data you would like to import (don't include any extensions)")
   filename = input("file>") + ".dice"
   print("Opening file!")
-  file = open(filename, "r")
+  try:
+    file = open(filename, "r")
+  except FileNotFoundError:
+    print("ERROR: The file specified could not be found!")
+    input("back>")
+    return
+  except Exception as e:
+    print("An unexpected error has ocurred! Please try again. If you file a bug report please include this text: \"{}\"".format(e))
   if file is None:
     print("Invalid file name!")
     input("back>")
