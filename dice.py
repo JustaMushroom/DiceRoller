@@ -66,6 +66,10 @@ def rolldice(density, count, times):
     rolls.append(roll)
     i += 1
   #print(rolls)
+  showresults(rolls)
+  return
+
+def showresults(rolls)
   q = 0
   menu_data = [
     ['Title', 'Value', 'Total', 'Average']
@@ -99,6 +103,7 @@ def rolldice(density, count, times):
     return
   elif choice.upper() == "METRICS" or choice.upper() == "M":
     showmetrics(rolls) # TODO: Make the return after this function go back to the original results display (refactoring most of this code will likely be required)
+    showresults(rolls)
     return
   else:
     return
