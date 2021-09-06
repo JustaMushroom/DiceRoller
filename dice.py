@@ -104,7 +104,10 @@ def confirmroll(density, count, times):
     rolldice(density, count, times)
   elif c == "N":
     return
+  elif c.len == 0:
+    return
   else:
+    print("Invalid Option, exiting...")
     return
 
 def newroll():
