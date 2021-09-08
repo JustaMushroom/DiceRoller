@@ -66,6 +66,10 @@ def rolldice(density, count, times):
     rolls.append(roll)
     i += 1
   #print(rolls)
+  showresults(rolls, density, count, times)
+  return
+
+def showresults(rolls, density, count, times):
   q = 0
   menu_data = [
     ['Title', 'Value', 'Total', 'Average']
@@ -87,14 +91,19 @@ def rolldice(density, count, times):
   clear()
   print(header.table)
   print(menu.table)
+  print("To view advanced metrics, type \"metrics\"")
   print("To save the information of the current dice to a file, type \"save\" now")
   print("To roll again with the same settings, type \"reroll\"")
-  choice = input("save/reroll/back>")
+  choice = input("metrics/save/reroll/back>")
   if choice.upper() == "SAVE" or choice.upper() == "S" or choice.upper() == "SAVEROLL":
     saveroll(density, count, times)
     return
   elif choice.upper() == "REROLL" or choice.upper() == "R":
     confirmroll(density, count, times)
+    return
+  elif choice.upper() == "METRICS" or choice.upper() == "M":
+    showmetrics(rolls) # TODO: Make the return after this function go back to the original results display (refactoring most of this code will likely be required)
+    showresults(rolls, density, count, times)
     return
   else:
     return
@@ -203,6 +212,64 @@ def importroll():
     dicecount = data[1]
     dicetimes = data[2].strip("\n")
     confirmroll(dicedensity, dicecount, dicetimes)
+
+def showmetrics(rolls):
+  title_data = [
+    ["Advanced Metrics"]
+  ]
+  body_data = [
+    ["Metric", "Best roll", "Value"]
+  ]
+  definedmetrics = ["Highest Total", "Highest Average"]
+  definedresults = []
+  splitrolls = []
+  rolltotals = []
+  rollaverages = []
+  for roll in rolls:
+    croll = roll.split(":")
+    splitrolls.append(croll)
+    introll = []
+    for number in croll:
+      introll.append(int(number))
+    rolltotals.append(sum(introll))
+    rollaverages.append(sum(introll) / len(introll))
+  
+  besttotal = {"idx": -1, "val": 0}
+  bestaverage = {"idx": -1, "val": 0}
+  
+  currentIndex = 0
+
+  while currentIndex < len(rolltotals):
+    total = rolltotals[currentIndex]
+    if total > besttotal["val"]:
+      besttotal = {"idx": currentIndex, "val": total}
+    currentIndex += 1
+  
+  currentIndex = 0
+
+  while currentIndex < len(rollaverages):
+    average = rollaverages[currentIndex]
+    if average > bestaverage["val"]:
+      bestaverage = {"idx": currentIndex, "val": average}
+    currentIndex += 1
+  
+  definedresults.append(besttotal)
+  definedresults.append(bestaverage)
+
+  cI = 0
+  while cI < len(definedmetrics):
+    metric = definedmetrics[cI]
+    metricresult = definedresults[cI]
+    toadd = [metric, "Roll {}".format(metricresult["idx"] + 1), str(metricresult["val"])]
+    body_data.append(toadd)
+    cI += 1
+  
+  titletable = AsciiTable(title_data)
+  bodytable = AsciiTable(body_data)
+  clear()
+  print(titletable.table)
+  print(bodytable.table)
+  input("back>")
 
 menuoptions = {
   "1": newroll,
