@@ -198,12 +198,13 @@ def importroll():
     file = open(filename, "r")
   except FileNotFoundError:
     print("ERROR: The file specified could not be found!")
+    print("Is the file in the same directory as the python script?")
     input("back>")
     return
   except Exception as e:
     print("An unexpected error has ocurred! Please try again. If you file a bug report please include this text: \"{}\"".format(e))
   if file is None:
-    print("Invalid file name!")
+    print("Invalid file!")
     input("back>")
   else:
     info = file.readlines()[0]
