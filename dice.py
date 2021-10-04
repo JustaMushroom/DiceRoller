@@ -193,7 +193,7 @@ def newroll():
 def importroll():
   print("Type the filename of the dice data you would like to import (don't include any extensions)")
   filename = input("file>") + ".dice"
-  print("Opening file!")
+  print("Opening file \"{}\"".format(filename))
   try:
     file = open(filename, "r")
   except FileNotFoundError:
