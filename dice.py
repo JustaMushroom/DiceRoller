@@ -52,9 +52,6 @@ def rolldice(density, count, times):
   print("Rolling {} {}-sided dice/s {} times".format(count, density, times))
   ccount = int(times) - 1
   sleep(3)
-  header_data = [
-    ['Dice Rolls']
-  ]
   rolls = []
   i = 0
   while i <= int(ccount):
@@ -73,6 +70,9 @@ def showresults(rolls, density, count, times):
   q = 0
   menu_data = [
     ['Title', 'Value', 'Total', 'Average']
+  ]
+  header_data = [
+    ['Dice Rolls']
   ]
 
   while q < len(rolls):
