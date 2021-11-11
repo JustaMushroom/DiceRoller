@@ -78,9 +78,7 @@ def showresults(rolls, density, count, times):
   while q < len(rolls):
     croll = rolls[q]
     crollsplit = croll.split(":")
-    crollint = []
-    for number in crollsplit:
-      crollint.append(int(number))
+    crollint = [int(i) for i in crollsplit]
     averageRoll = sum(crollint) / len(crollint)
     totalRoll = functools.reduce(lambda a, b: a+b, [int(number) for number in crollsplit])
     menu_data.append(['Roll {}'.format(str(int(q) + 1)), croll, totalRoll, averageRoll])
