@@ -227,9 +227,7 @@ def showmetrics(rolls):
   for roll in rolls:
     croll = roll.split(":")
     splitrolls.append(croll)
-    introll = []
-    for number in croll:
-      introll.append(int(number))
+    introll = [int(i) for i in croll]
     rolltotals.append(sum(introll))
     rollaverages.append(sum(introll) / len(introll))
   
